@@ -1,12 +1,8 @@
 FROM python:3.8-slim-buster
 
 WORKDIR /python-docker
-
-COPY requirements.txt requirements.txt
+COPY . /app
 RUN pip3 install -r requirements.txt
-RUN pip install --upgrade pip
-RUN pip install flask
-
-COPY . .
-
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+EXPOSE 8080
+ENTRYPOINT ["python"]
+CMD ["src/app.py"]
